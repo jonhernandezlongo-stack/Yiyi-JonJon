@@ -70,6 +70,17 @@ const tryPlayMusic = async () => {
   }
 };
 
+const armMusicAutoplay = () => {
+  if (!bgMusic) {
+    return;
+  }
+  const start = () => {
+    tryPlayMusic();
+  };
+  window.addEventListener("pointerdown", start, { once: true });
+  window.addEventListener("keydown", start, { once: true });
+};
+
 const MUSIC_TRACKS = {
   login: "audio/chinese.mp3",
   main: "audio/edgerunners_theme.mp3",
@@ -371,6 +382,7 @@ const revealLoginElements = (container) => {
 
 lockApp();
 setMusicTrack(MUSIC_TRACKS.login, true);
+armMusicAutoplay();
 typeLines(LOGIN_COPY.intro, loginChat, () => revealLoginElements(loginStepOne));
 
 if (loginStepTwo) {
