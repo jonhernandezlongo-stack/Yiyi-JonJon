@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yi & Jon | Our Neon Valentine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="login-screen" id="loginScreen">
+      <div class="login-card">
+        <p class="login-tag">Access Gate // Night City</p>
+        <div class="login-chat" id="loginChat" aria-live="polite"></div>
+        <form class="login-form" id="loginForm" novalidate>
+          <div class="login-step" data-step="1">
+            <label class="login-label login-reveal" for="nameCode">How do I call you Yiyi?</label>
+            <input class="login-input login-reveal" id="nameCode" name="nameCode" type="text" placeholder="Your name" autocomplete="off" />
+            <button class="btn login-submit login-reveal" type="button" id="loginNext">Unlock</button>
+          </div>
+          <div class="login-step" data-step="2">
+            <label class="login-label login-reveal" for="dayCode">Day of my birthday</label>
+            <input class="login-input login-reveal" id="dayCode" name="dayCode" type="text" placeholder="Birthday day" inputmode="numeric" autocomplete="off" />
+            <button class="btn login-submit login-reveal" type="submit" id="loginSubmit">Real unlock</button>
+          </div>
+          <p class="login-error" id="loginError" role="alert"></p>
+        </form>
+      </div>
+    </div>
+
+    <div id="app" aria-hidden="true">
+      <div class="bg-grid"></div>
+      <div class="bg-glow"></div>
+      <div class="bg-nebula" aria-hidden="true"></div>
+      <div class="bg-image" aria-hidden="true">
+        <img src="images/youme.webp" alt="" />
+      </div>
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="hero__tag">Night City Love Log</p>
+          <h1>Yi + Jon</h1>
+          <p class="hero__subtitle">
+            A neon-threaded story of two hearts syncing across cities, seasons, and time.
+          </p>
+          <button class="btn start-connection" id="startConnection">Start connection</button>
+        </div>
+        <div class="hero__card" id="syncStatus">
+          <div class="pulse"></div>
+          <div class="card__content">
+            <p class="card__label">Sync Status</p>
+            <p class="card__value" id="syncValue">Hearts waiting</p>
+            <p class="card__small" id="syncSub">Awaiting connection</p>
+            <div class="sync-route">
+              <span class="sync-node">Keelung</span>
+              <div class="sync-line">
+                <span class="sync-trace"></span>
+              </div>
+              <span class="sync-node">San Sebastian</span>
+            </div>
+            <p class="sync-foot" id="syncFoot">Signal idle. Tap Start connection.</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="timeline" id="timeline">
+        <div class="spiral" id="spiral">
+        <div class="starfield stage-hidden" id="starfield" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <svg class="spiral__path stage-hidden" id="spiralPathWrap" aria-hidden="true" focusable="false">
+          <path id="spiralPath"></path>
+        </svg>
+        <div class="spiral__center stage-hidden" id="spiralCore">
+          <p class="spiral__label">Core</p>
+          <p class="spiral__title">Yi & Jon</p>
+        </div>
+        <div class="spiral__panel" id="storyPanel" aria-live="polite" hidden>
+          <div class="spiral__panel-header">
+            <button class="panel__close" id="closePanel" aria-label="Close story">×</button>
+          </div>
+          <div class="spiral__panel-content" id="storyPanelContent"></div>
+        </div>
+
+        <div class="beat stage-hidden" data-index="0">
+          <button class="beat__pin" aria-expanded="false" aria-controls="story-1">
+            <span class="beat__title">Signal Found</span>
+            <span class="beat__dot">
+              <span class="beat__star" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="beat__story" id="story-1" hidden>
+            <p class="beat__chapter">01 // Signal Found</p>
+            <p class="beat__date">November 13</p>
+            <h3>The moment we met</h3>
+            <p>
+              November 13 at Dreamers Coffee, Taipei. Two strangers, one spark. Slow smiles,
+              brave hello. A small table, a big signal. Days in your house of Taipei talking about life, 
+              some parties together, our first memories.
+            </p>
+            <p class="beat__meta">Taipei, Taiwan</p>
+            <div class="beat__media-grid">
+              <img src="images/Working1.jpeg" alt="Focused moment" loading="lazy" />
+              <img src="images/Taipei1.jpeg" alt="Taipei memory" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="beat stage-hidden" data-index="1">
+          <button class="beat__pin" aria-expanded="false" aria-controls="story-2">
+            <span class="beat__title">First Run</span>
+            <span class="beat__dot">
+              <span class="beat__star" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="beat__story" id="story-2" hidden>
+            <p class="beat__chapter">02 // First Run</p>
+            <p class="beat__date">December 17</p>
+            <h3>Our first travel together</h3>
+            <p>
+              December 17 in Jiufen and Shifen. Lantern light, misty steps. Hands warm,
+              hearts louder. Our first run as a real duo.
+            </p>
+            <p class="beat__meta">Jiufen + Shifen</p>
+            <div class="beat__media-grid">
+              <img src="images/Shifen1.jpeg" alt="Shifen memory" loading="lazy" />
+              <img src="images/shifen2.jpeg" alt="Shifen lanterns" loading="lazy" />
+              <img src="images/jifen1.jpeg" alt="Jiufen memory" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="beat stage-hidden" data-index="2">
+          <button class="beat__pin" aria-expanded="false" aria-controls="story-3">
+            <span class="beat__title">Crossroads</span>
+            <span class="beat__dot">
+              <span class="beat__star" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="beat__story" id="story-3" hidden>
+            <p class="beat__chapter">03 // Crossroads</p>
+            <p class="beat__date">December 20</p>
+            <h3>The day we said goodbye</h3>
+            <p>
+              December 20 at Taipei Station. A taxi drive. A last look. A last hug. A promise to keep
+              the signal alive while Jon traveled to Spain. Everything felt uncertain, but we chose to keep
+              talking, even with the distance.
+            </p>
+            <p class="beat__meta">Taipei Station</p>
+            <div class="beat__media-grid">
+              <img src="images/Goodbye1.jpeg" alt="Goodbye moment" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="beat stage-hidden" data-index="3">
+          <button class="beat__pin" aria-expanded="false" aria-controls="story-4">
+            <span class="beat__title">Northern Lights</span>
+            <span class="beat__dot">
+              <span class="beat__star" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="beat__story" id="story-4" hidden>
+            <p class="beat__chapter">04 // Northern Lights</p>
+            <p class="beat__date">January 18-23</p>
+            <h3>The travel to Sweden</h3>
+            <p>
+              January 18 to 23 in Stockholm. Cold air, warm hands. Quiet streets, neon dreams.
+              A city that held us close and apart atthe same time. It was a test for our confidence,
+              but we end up with stronger signals, and a deeper connection.
+            </p>
+            <p class="beat__meta">Stockholm, Sweden</p>
+            <div class="beat__media-grid">
+              <img src="images/Sweden1.jpeg" alt="Sweden memory" loading="lazy" />
+              <img src="images/Sweden2.jpeg" alt="Sweden memory" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="beat stage-hidden" data-index="4">
+          <button class="beat__pin" aria-expanded="false" aria-controls="story-5">
+            <span class="beat__title">Contract Signed</span>
+            <span class="beat__dot">
+              <span class="beat__star" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="beat__story" id="story-5" hidden>
+            <p class="beat__chapter">05 // Contract Signed</p>
+            <p class="beat__date">January 31</p>
+            <h3>We chose a relationship</h3>
+            <p>
+              January 31. Jon in San Sebastian, Yi in Keelung. Distance, but no doubt.
+              A brave yes. A shared future. A long distance connection that we want to
+              turn into a promise.
+            </p>
+            <p class="beat__meta">San Sebastian + Keelung</p>
+            <div class="beat__media-grid">
+              <video class="beat__video" src="images/Karaoke1.mp4" controls playsinline></video>
+            </div>
+          </div>
+        </div>
+
+        <div class="beat beat--final stage-hidden" data-index="5">
+          <button class="beat__pin" aria-expanded="false" aria-controls="story-6">
+            <span class="beat__title">Future Protocol</span>
+            <span class="beat__dot">
+              <span class="beat__star" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="beat__story" id="story-6" hidden>
+            <p class="beat__chapter">06 // Future Protocol</p>
+            <p class="beat__date">Forever</p>
+            <h3>Our future</h3>
+            <p>
+              A skyline we build together. Neon nights, calm mornings. A promise to always
+              choose each other. Wherever we go, our signal stays strong.
+            </p>
+            <p class="beat__meta">Wherever the two of us are</p>
+            <div class="beat__media">
+              <img src="images/YouMe.gif" alt="Yi and Jon moment" loading="lazy" />
+            </div>
+            <div class="valentine">
+              <p class="valentine__question">Yi, will you chose to be my Valentine?</p>
+              <div class="valentine__actions">
+                <button class="btn valentine__btn valentine__yes" type="button">Yes</button>
+                <button class="btn btn--ghost valentine__btn valentine__no" type="button">No</button>
+              </div>
+              <p class="valentine__error" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </main>
+
+      <footer class="footer stage-hidden" id="footer">
+        <p>Made for Yi, with love from Jon.</p>
+      </footer>
+
+      <audio id="bgMusic" src="audio/chinese.mp3" preload="auto" autoplay loop></audio>
+      <audio id="sfxOk" src="audio/ButtonOK.mp3" preload="auto"></audio>
+      <audio id="sfxKo" src="audio/ButtonKO.mp3" preload="auto"></audio>
+    </div>
+
+    <div class="valentine-overlay stage-hidden" id="valentineOverlay" aria-hidden="true">
+      <div class="valentine-overlay__card">
+        <p class="valentine-overlay__text" id="valentineOverlayText"></p>
+        <button class="btn valentine-overlay__back" id="valentineOverlayBack" type="button">Go back</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
