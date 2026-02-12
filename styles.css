@@ -25,7 +25,8 @@ body {
 body {
   font-family: "Space Grotesk", "Segoe UI", sans-serif;
   color: #f9f5ff;
-  background: url("images/YouMe.webp") center/cover no-repeat fixed;
+  background: url("images/YouMe.webp") center/cover no-repeat fixed,
+    url("images/YouMe.jpg") center/cover no-repeat fixed;
   min-height: 100vh;
   overflow: hidden;
   display: flex;

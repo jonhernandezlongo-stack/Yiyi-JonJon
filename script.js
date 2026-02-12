@@ -79,6 +79,15 @@ const armMusicAutoplay = () => {
   };
   window.addEventListener("pointerdown", start, { once: true });
   window.addEventListener("keydown", start, { once: true });
+  if (loginScreen) {
+    loginScreen.addEventListener("pointerdown", start, { once: true });
+  }
+  if (nameCodeInput) {
+    nameCodeInput.addEventListener("focus", start, { once: true });
+  }
+  if (dayCodeInput) {
+    dayCodeInput.addEventListener("focus", start, { once: true });
+  }
 };
 
 const MUSIC_TRACKS = {
