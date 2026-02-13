@@ -871,40 +871,6 @@ button:active {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.media-carousel__nav {
-  display: none;
-}
-
-.media-carousel__nav:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-
-.media-carousel__nav--prev {
-  left: -6px;
-}
-
-.media-carousel__nav--next {
-  right: -6px;
-}
-
-.media-carousel__dots {
-  display: none;
-}
-
-.media-carousel__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.35);
-  cursor: pointer;
-}
-
-.media-carousel__dot[aria-current="true"] {
-  background: #ff7ad9;
-  box-shadow: 0 0 8px rgba(255, 122, 217, 0.6);
-}
 
 .valentine {
   margin-top: 16px;
@@ -1085,7 +1051,7 @@ body.valentine-celebrate::after {
   position: relative;
   z-index: 4;
   text-align: center;
-  padding: 8px 12px 16px;
+  padding: 12px;
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.75);
   background: rgba(8, 8, 16, 0.55);
@@ -1098,7 +1064,7 @@ body.valentine-celebrate::after {
   bottom: 16px;
   right: 16px;
   left: auto;
-  max-width: 360px;
+  width: min(380px, 90vw);
   border-radius: 16px;
 }
 

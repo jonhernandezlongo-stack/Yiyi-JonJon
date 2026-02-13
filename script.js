@@ -29,7 +29,6 @@ const sfxKo = document.getElementById("sfxKo");
 const valentineOverlay = document.getElementById("valentineOverlay");
 const valentineOverlayText = document.getElementById("valentineOverlayText");
 const valentineOverlayBack = document.getElementById("valentineOverlayBack");
-let musicPlaying = false;
 let carouselTimers = [];
 let wasMusicPlayingBeforeVideo = false;
 let valentineAccepted = false;
@@ -64,9 +63,7 @@ const valentineMessage =
 const tryPlayMusic = async () => {
   try {
     await bgMusic.play();
-    musicPlaying = true;
   } catch (error) {
-    musicPlaying = false;
   }
 };
 
