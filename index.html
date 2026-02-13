@@ -7,6 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="images/YouMe.webp" />
+    <link rel="preload" as="image" href="images/YouMe.jpg" />
+    <link rel="preload" as="image" href="images/Working1.jpeg" />
+    <link rel="preload" as="image" href="images/Taipei1.jpeg" />
+    <link rel="preload" as="image" href="images/Shifen1.jpeg" />
+    <link rel="preload" as="image" href="images/shifen2.jpeg" />
+    <link rel="preload" as="image" href="images/jifen1.jpeg" />
+    <link rel="preload" as="image" href="images/Goodbye1.jpeg" />
+    <link rel="preload" as="image" href="images/Sweden1.jpeg" />
+    <link rel="preload" as="image" href="images/Sweden2.jpeg" />
+    <link rel="preload" as="image" href="images/YouMe.gif" />
+    <link rel="preload" as="video" href="images/Karaoke1.mp4" type="video/mp4" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -43,7 +55,7 @@
       <header class="hero">
         <div class="hero__copy">
           <p class="hero__tag">Night City Love Log</p>
-          <h1>Yi + Jon</h1>
+          <h1>Yi & Jon</h1>
           <p class="hero__subtitle">
             A neon-threaded story of two hearts syncing across cities, seasons, and time.
           </p>
@@ -111,8 +123,8 @@
             </p>
             <p class="beat__meta">Taipei, Taiwan</p>
             <div class="beat__media-grid">
-              <img src="images/Working1.jpeg" alt="Focused moment" loading="lazy" />
-              <img src="images/Taipei1.jpeg" alt="Taipei memory" loading="lazy" />
+              <img src="images/Working1.jpeg" alt="Focused moment" loading="eager" />
+              <img src="images/Taipei1.jpeg" alt="Taipei memory" loading="eager" />
             </div>
           </div>
         </div>
@@ -134,9 +146,9 @@
             </p>
             <p class="beat__meta">Jiufen + Shifen</p>
             <div class="beat__media-grid">
-              <img src="images/Shifen1.jpeg" alt="Shifen memory" loading="lazy" />
-              <img src="images/shifen2.jpeg" alt="Shifen lanterns" loading="lazy" />
-              <img src="images/jifen1.jpeg" alt="Jiufen memory" loading="lazy" />
+              <img src="images/Shifen1.jpeg" alt="Shifen memory" loading="eager" />
+              <img src="images/shifen2.jpeg" alt="Shifen lanterns" loading="eager" />
+              <img src="images/jifen1.jpeg" alt="Jiufen memory" loading="eager" />
             </div>
           </div>
         </div>
@@ -159,7 +171,7 @@
             </p>
             <p class="beat__meta">Taipei Station</p>
             <div class="beat__media-grid">
-              <img src="images/Goodbye1.jpeg" alt="Goodbye moment" loading="lazy" />
+              <img src="images/Goodbye1.jpeg" alt="Goodbye moment" loading="eager" />
             </div>
           </div>
         </div>
@@ -182,8 +194,8 @@
             </p>
             <p class="beat__meta">Stockholm, Sweden</p>
             <div class="beat__media-grid">
-              <img src="images/Sweden1.jpeg" alt="Sweden memory" loading="lazy" />
-              <img src="images/Sweden2.jpeg" alt="Sweden memory" loading="lazy" />
+              <img src="images/Sweden1.jpeg" alt="Sweden memory" loading="eager" />
+              <img src="images/Sweden2.jpeg" alt="Sweden memory" loading="eager" />
             </div>
           </div>
         </div>
@@ -206,7 +218,7 @@
             </p>
             <p class="beat__meta">San Sebastian + Keelung</p>
             <div class="beat__media-grid">
-              <video class="beat__video" src="images/Karaoke1.mp4" controls playsinline></video>
+              <video class="beat__video" src="images/Karaoke1.mp4" controls playsinline preload="metadata"></video>
             </div>
           </div>
         </div>
@@ -228,7 +240,7 @@
             </p>
             <p class="beat__meta">Wherever the two of us are</p>
             <div class="beat__media">
-              <img src="images/YouMe.gif" alt="Yi and Jon moment" loading="lazy" />
+              <img class="beat__gif" src="images/YouMe.gif" alt="Yi and Jon moment" loading="eager" />
             </div>
             <div class="valentine">
               <p class="valentine__question">Yi, will you chose to be my Valentine?</p>
@@ -243,7 +255,7 @@
         </div>
       </main>
 
-      <footer class="footer stage-hidden" id="footer">
+      <footer class="footer stage-visible" id="footer">
         <p>Made for Yi, with love, from Jon.</p>
       </footer>
 
@@ -253,6 +265,18 @@
     </div>
 
     <div class="valentine-overlay stage-hidden" id="valentineOverlay" aria-hidden="true">
+      <div class="valentine-hearts" aria-hidden="true">
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+        <span class="valentine-heart"></span>
+      </div>
       <div class="valentine-overlay__card">
         <p class="valentine-overlay__text" id="valentineOverlayText"></p>
         <button class="btn valentine-overlay__back" id="valentineOverlayBack" type="button">Go back</button>

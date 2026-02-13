@@ -35,7 +35,8 @@ let valentineAccepted = false;
 let overlayTypeTimer = null;
 
 const TIMINGS = {
-  overlayTypeMs: 80,
+  overlayTypeMs: 35,
+  overlayPunctMs: 360,
   sceneStepMs: 420,
   overlayDelayMs: 200,
   loginLineFirstMs: 28,
@@ -58,7 +59,7 @@ const LOGIN_COPY = {
 };
 
 const valentineMessage =
-  "Happy Valentine Yi! I am really happy to have been able to meet such an amazing girl like you in my life, in such a far away place like Taiwan. I hope we can make our relation stronger day by day, and be able to make a future together where the opportunities are infinite, more than the stars in the universe. I hope you like this gift I made for you <3";
+  "Happy Valentine, Yi.\nMeeting you in Taiwan changed my world.\nEvery day with you makes our bond stronger, even across the distance.\nI want a future where we choose each other and build a home together.\nOur possibilities are as many as the stars in the universe.\nThank you for being you.\nI hope this little gift makes you smile.\nI love you.";
 
 const tryPlayMusic = async () => {
   try {
@@ -171,13 +172,12 @@ const playSfx = (audioEl) => {
 
 const getSceneElements = () =>
   [
-    document.querySelector(".bg-grid"),
-    document.querySelector(".bg-glow"),
-    document.querySelector(".bg-image"),
-    document.getElementById("timeline"),
     document.querySelector(".hero__copy"),
-    footer,
     syncStatus,
+    footer,
+    spiralPathWrap,
+    spiralCore,
+    ...document.querySelectorAll(".beat"),
   ].filter(Boolean);
 
 const typeSlowText = (text, target, onComplete) => {
@@ -193,9 +193,24 @@ const typeSlowText = (text, target, onComplete) => {
       }
       return;
     }
-    target.textContent += text[index];
-    index += 1;
-    overlayTypeTimer = window.setTimeout(step, TIMINGS.overlayTypeMs);
+    const char = text[index];
+    let delay = TIMINGS.overlayTypeMs;
+    let advance = 1;
+    if (char === "." || char === "!") {
+      target.textContent += char;
+      const nextChar = text[index + 1];
+      if (nextChar !== "\n") {
+        target.textContent += "\n";
+      }
+      if (nextChar === " ") {
+        advance = 2;
+      }
+      delay = TIMINGS.overlayPunctMs;
+    } else {
+      target.textContent += char;
+    }
+    index += advance;
+    overlayTypeTimer = window.setTimeout(step, delay);
   };
   step();
 };
@@ -264,30 +279,25 @@ const hideValentineOverlay = () => {
 
 const hideSceneSequence = () => {
   const elements = getSceneElements();
-  elements.forEach((element, index) => {
+  elements.forEach((element) => {
     element.dataset.prevHidden = element.classList.contains("stage-hidden") ? "true" : "false";
-    window.setTimeout(() => {
-      element.classList.add("stage-hidden");
-      element.classList.remove("stage-visible");
-    }, index * TIMINGS.sceneStepMs);
+    element.classList.add("stage-hidden");
+    element.classList.remove("stage-visible");
   });
-  const totalDelay = elements.length * TIMINGS.sceneStepMs;
-  window.setTimeout(showValentineOverlay, totalDelay + TIMINGS.overlayDelayMs);
+  window.setTimeout(showValentineOverlay, TIMINGS.overlayDelayMs);
 };
 
 const restoreSceneSequence = () => {
   const elements = getSceneElements();
-  elements.forEach((element, index) => {
+  elements.forEach((element) => {
     const wasHidden = element.dataset.prevHidden === "true";
-    window.setTimeout(() => {
-      if (wasHidden) {
-        element.classList.add("stage-hidden");
-        element.classList.remove("stage-visible");
-      } else {
-        element.classList.remove("stage-hidden");
-        element.classList.add("stage-visible");
-      }
-    }, index * TIMINGS.sceneStepMs);
+    if (wasHidden) {
+      element.classList.add("stage-hidden");
+      element.classList.remove("stage-visible");
+    } else {
+      element.classList.remove("stage-hidden");
+      element.classList.add("stage-visible");
+    }
   });
 };
 
@@ -353,7 +363,9 @@ const typeLines = (lines, target, onComplete) => {
     charIndex += 1;
 
     if (charIndex >= line.length) {
-      target.textContent += "\n";
+      if (lineIndex < lines.length - 1) {
+        target.textContent += "\n";
+      }
       lineIndex += 1;
       charIndex = 0;
       if (lineIndex >= lines.length) {
@@ -437,6 +449,8 @@ if (loginNext) {
     loginNext.classList.remove("is-visible");
     window.setTimeout(() => {
       if (loginStepOne) {
+        const stepOneItems = loginStepOne.querySelectorAll(".login-reveal.is-visible");
+        stepOneItems.forEach((item) => item.classList.remove("is-visible"));
         loginStepOne.classList.add("is-hidden");
       }
       typeLines(
